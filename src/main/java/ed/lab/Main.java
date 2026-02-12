@@ -3,41 +3,39 @@ package ed.lab;
 import java.util.Random;
 
 public class Main {
-    private static final ArrayGenerator<Integer> sortedArrayGenerator =  length -> {
-        Integer[] array = new Integer[length];
-        for(int i =0; i < length; i++){
-            array[i] = i;
-
-        }
-        return array;
-    };
-
-    private static final ArrayGenerator<Integer> invertedArrayGenerator = length -> {
-        Integer[] array = new Integer[length];
+    private static final ArrayGenerator<String> sortedArrayGenerator = length -> {
+        String[] array = new String[length];
         for (int i = 0; i < length; i++) {
-            array[i] = length - 1 - i;
+            array[i] = String.format("%03d", i); // "000", "001", ...
+        }
+        return array;
+    };
+
+    private static final ArrayGenerator<String> invertedArrayGenerator = length -> {
+        String[] array = new String[length];
+        for (int i = 0; i < length; i++) {
+            array[i] = String.format("%03d", length - 1 - i);
+        }
+        return array;
+    };
+
+    private static final ArrayGenerator<String> randomArrayGenerator = length -> {
+        java.util.Random random = new java.util.Random();
+        String[] array = new String[length];
+        for (int i = 0; i < length; i++) {
+            array[i] = String.format("%03d", random.nextInt(length));
         }
         return array;
     };
 
 
-
-    private static final ArrayGenerator<Integer> randomArrayGenerator = length -> {
-        Random random = new Random();
-        Integer[] array = new Integer[length];
-        for(int i =0; i < length; i++){array[i] = random.nextInt(length);
-        }
-        return array;
-
-    };
-
-    private static final QuickSort<Integer> highPivotQuickSort =
+    private static final QuickSort<String> highPivotQuickSort =
             SortingAlgorithms::highPivotQuickSort;
 
-    private static final QuickSort<Integer> lowPivotQuickSort =
+    private static final QuickSort<String> lowPivotQuickSort =
             SortingAlgorithms::lowPivotQuickSort;
 
-    private static final QuickSort<Integer> randomPivotQuickSort =
+    private static final QuickSort<String> randomPivotQuickSort =
             SortingAlgorithms::randomPivotQuickSort;
 
 
